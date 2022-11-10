@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JQuerry Task</title>
+    <script src="jquery-3.6.1.min.js.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form id="myform">
+      <div>
+        <label for="username">User Name:</label>
+        <input type="text" id="username" placeholder="Enter your Name" />
+        <p id="name-error"></p>
+      </div>
+      <div>
+        <label for="country">Country Name:</label>
+        <input type="text" id="country" placeholder="Enter your country" />
+        <p id="L-error"></p>
+      </div>
+      <div>
+        <label for="Phone_Number">Phone Number:</label>
+        <input type="text" id="Pno" placeholder="Enter your age" />
+        <p id="no-error"></p>
+      </div>
+      <div>
+        <button type="reset">Reset your form</button>
+        <button type="submit" id="btn-submit">Submit your form</button>
+      </div>
+    </form>
+  </body>
+  <script src="Javascript.js"></script>
+  <script>
+    $(document).ready(function () {
+      let name = $("#username");
+      let Country_name = $("#country");
+      let P_nubmer = $("#Pno");
+
+      let n_error = $("#name-error");
+      let C_error = $("#L-error");
+      let P_error = $("#no-error");
+
+      function validateusername() {
+        let uname = name.val();
+        console.log(uname);
+        // const pattern = "^\s*[a-zA-Z]+$/";
+        const pattern = /^[A-Za-z]+$/;
+        if (uname.length == 0) {
+          n_error.show();
+          n_error.html("Cannot be empty").css("color","red");
+        } else {
+          if (!pattern.test(uname)) {
+            n_error.show();
+            n_error.html("Plz enter letter only");
+          }
+        }
+      }
+
+
+      function validatecountry() {
+        let C_name = Country_name.val();
+        console.log(C_name);
+        // const pattern = "^\s*[a-zA-Z]+$/";
+        const pattern = /^[A-Za-z]+$/;
+        if (C_name.length == 0) {
+          C_error.show();
+          C_error.html("Cannot be empty").css("color","red");
+        } else {
+          if (!pattern.test(C_name)) {
+            C_error.show();
+            C_error.html("Plz enter letter only").css("color","red");;
+          }
+        }
+      }
+
+      function validateNumber()
+      {
+        let number  = P_nubmer.val();
+        console.log(number);
+        const pattern = /^[0-9]+$/;
+        if(number.length == 0)
+        {
+          P_error.show();
+          P_error.html("Cannot be empty").css("color","red");;
+        }
+        else {
+          if (!pattern.test(number)) {
+            P_error.show();
+            P_error.html("Plz enter number only").css("color","red");;
+          }
+      }
+    }
+      $("#btn-submit").click(function (e) {
+        e.preventDefault();
+        validateusername();
+        validatecountry();
+        validateNumber();
+      });
+      //  for user name
+      $("#username").blur(function () {
+        validateusername();
+      });
+
+      $("#username").focus(function () {
+        $("#name-error").hide();
+      });
+
+      // for country
+      $("#country").blur(function () {
+        validatecountry();
+      });
+
+      $("#country").focus(function () {
+        $("#L_error").hide();
+      });
+
+      // for Number
+      $("#Pno").blur(function () {
+        validateNumber();
+      });
+
+      $("#Pno").focus(function () {
+        $("#no-error").hide();
+      });
+    });
+  </script>
+</html>
